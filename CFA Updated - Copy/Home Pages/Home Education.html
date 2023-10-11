@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+    <style>
+        body {
+            font-family: Inria Serif, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000235;
+            color: #fff;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #d9d9d9;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            transition: box-shadow 0.3s;
+        }
+
+        nav a:hover {
+            box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.7);
+        }
+		  .hidden-rectangle {
+            display: none; /* Initially hide the rectangle */
+            position: relative; /* Change from fixed to relative positioning */
+			align-items: center;
+			justify-content: center;
+            width: 700px; /* Adjust width based on your needs */
+			height: 20px;
+			top: 101px;
+			left: 11%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 0 10px 10px 0; /* Top right and bottom right corners are curved */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden; /* Ensure the content stays within the container */
+            color: #000; /* Set text color to black */
+			
+        }
+
+        header {
+            background-color: #d9d9d9;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 0 15px;
+            border-radius: 5px;
+            background-color: #d9d9d9;
+            transition: background-color 0.3s ease;
+            font-size: 20px;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+        }
+
+        .content {
+            margin-top: 150px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        #sticky-header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background-color: #d9d9d9;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        #sticky-header.sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .image-container {
+            text-align: center;
+            width: 180px;
+            margin: 30px;
+            position: 200px;
+        }
+
+        .image-heading {
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .image-card {
+            position: 200px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+            width: 180px;
+            height: 240px;
+            background-color: #d9d9d9;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .image-card:before {
+            content: "";
+            position: absolute;
+            top: 300px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #d9d9d9;
+            filter: blur(8px);
+            z-index: -1;
+            transition: visibility 0.3s ease;
+            visibility: hidden;
+        }
+
+        .image-card:hover:before {
+            visibility: visible;
+        }
+
+        .image-card:hover {
+            transform: scale(1.05);
+        }
+
+        .paragraph-container {
+            width: 100%; /* Same width as the images */
+            position: absolute;
+            bottom: -10px; /* Adjusted bottom position */
+            left: 0;
+            background-color: #d9d9d9;
+            padding: 8px;
+            border-radius: 0 0 10px 10px;
+            visibility: hidden;
+            color: #000;
+            text-align: center;
+            transition: visibility 0.3s ease;
+        }
+
+        .image-container:hover .paragraph-container {
+            visibility: visible;
+        }
+
+        .paragraph-content {
+            font-size: 14px;
+        }
+
+        .click-me-button {
+            position: absolute;
+            top: 100px;
+            left: 11%;
+			width: 130px;
+			height: 62px;
+            transform: translateX(-50%);
+            z-index: 1001;
+            display: block;
+            padding: 15px 30px;
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .click-me-button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+	<style>
+  .spaced-text {
+  font-weight: bold;
+  line-height: 1.5;
+  font-size: 16px;
+  margin-left: 50px;  /* Adds space to the right of the element */
+  }
+  @keyframes slideIn {
+    from {
+        transform: translateX(-10%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.hidden-rectangle {
+    display: hidden;
+	align-items: center;
+	justify-content: center;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+</style>
+
+</head>
+<body>
+
+    <header id="sticky-header">
+        <nav>
+            <a href="../Quiz Junkie.html#Home">Home</a>
+            <a href="../Quiz Junkie.html#feature">Features</a>
+            <a href="../Quiz Junkie.html#Testimonials">Testimonials</a>
+            <a href="../Quiz Junkie.html#footer">About Us</a>
+        </nav>
+    </header>
+
+    <button class="click-me-button" onclick="toggleRectangle()">Click Me</button>
+
+    <!-- Hidden rectangle behind the button -->
+    <div class="hidden-rectangle" id="hiddenRectangle">
+        <!-- Add your textbox or any content here -->
+       <p id="sentenceContainer" class="spaced-text"></p>
+    </div>
+    <div class="content">
+
+        <div class="image-container">
+            <h2 class="image-heading">Beginner</h2>
+            <div class="image-card">
+                <a href="Quizzs/Education Easy.html"><img src="C:\Users\segopotso makhe\Desktop\CFA final Product\CFA Updated - Copy\Health 1 (15).jpeg" alt="Image 1"></a>
+            </div>
+            <div class="paragraph-container">
+                <div class="paragraph-content">
+                    <p>Dive into a world of fascinating facts and kickstart your quiz adventure with Fun Facts Galore.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <h2 class="image-heading">Intermediate</h2>
+            <div class="image-card">
+                <a href="Quizzs/Education Intermediate.html"><img src="C:\Users\segopotso makhe\Desktop\CFA final Product\CFA Updated - Copy\Health 1 (3).jpeg" alt="Image 2"></a>
+            </div>
+            <div class="paragraph-container">
+                <div class="paragraph-content">
+                    <p>Brace yourself for The Challenge Unleashed, an intermediate quiz that will push your limits.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <h2 class="image-heading">Professional</h2>
+            <div class="image-card">
+                <a href="Quizzs/Education Hard.html"><img src="C:\Users\segopotso makhe\Desktop\CFA final Product\CFA Updated - Copy\Health 1 (16).jpeg" alt="Image 3"></a>
+            </div>
+            <div class="paragraph-container">
+                <div class="paragraph-content">
+                    <p>Embark on The Mastermind's Quest, a pro-level quiz designed to test the limits of your knowledge.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <h2 class="image-heading">Multiplayer</h2>
+            <div class="image-card">
+                <a href="Quizzs/Education Multi.html"><img src="C:\Users\segopotso makhe\Desktop\CFA final Product\CFA Updated - Copy\Health 1 (8).jpeg" alt="Multiplayer"></a>
+            </div>
+            <div class="paragraph-container">
+                <div class="paragraph-content">
+                    <p>Engage in the Battle of Wits with your friends and see who emerges as the ultimate quiz champion.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="fun-facts-box" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; width: 300px; height: 600px; z-index: 1002; overflow-y: scroll;">
+        <h3>Did You Know?</h3>
+        <ul id="fun-facts-list"></ul>
+    </div>
+
+        <script>
+    // Array of sentences
+    var sentences = [
+        "Did you know that the human nose can remember over 50,000 different scents?",
+        "Reading reduces stress, increasing lifespan.",
+		"Mozart's music enhances spatial-temporal reasoning.",
+		"Finland has no standardized tests, yet excels in education.",
+		"The world's largest library is in the University of Indiana.",
+		"Students who take notes by hand remember better than typists.",
+		"Honey never spoils; ancient honey was found in Egyptian tombs.",
+		"The first university was established in Bologna, Italy, in 1088.",
+		"One hour of coding teaches logical thinking and problem-solving.",
+		"Octopuses have three hearts; they're intelligent marine creatures.",
+		"The world's oldest known educational institution is in Morocco.",
+		"Laughter boosts the immune system and improves cardiovascular health.",
+		"Humans shed 40 pounds of skin in a lifetime.",
+		"Drinking coffee reduces the risk of Alzheimer's and Parkinson's.",
+		"The heart circulates blood through 60,000 miles of blood vessels.",
+		"An apple wakes you up better than caffeine.",
+		"Lack of sleep increases the risk of obesity and diabetes.",
+		"Chewing gum improves concentration and reduces stress.",
+		"Dark chocolate lowers the risk of heart disease.",
+		"Frowning uses more muscles than smiling.",
+		"The human body has more bacteria than cells.",
+		"Golf on the Moon: Alan Shepard hit a golf ball.",
+		"Basketball was invented as a winter sport.",
+		"The longest tennis match lasted 11 hours and 5 minutes.",
+		"Olympic gold medals are mostly made of silver.",
+		"The first recorded marathon was run by a Greek soldier.",
+		"The first baseball game was played in 1846.",
+		"The hula hoop was initially a fitness device.",
+		"Soccer is known as football everywhere except in North America.",
+		"Usain Bolt holds the record for the fastest 100m sprint.",
+		"The Super Bowl is the second-largest U.S. food consumption day.",
+		"The first computer programmer was Ada Lovelace.",
+		"The QWERTY keyboard layout was designed to slow typists.",
+		"The first webcam was used to monitor a coffee pot.",
+		"The first computer mouse was made of wood.",
+		"The term 'bug' for computer glitches originated from a moth.",
+		"The World Wide Web was invented in 1989.",
+		"The first computer virus was created in 1983.",
+		"The average person spends 6 months of their life waiting for red lights.",
+		"The first email was sent in 1971 by Ray Tomlinson.",
+		"The first video game was created by William Higinbotham in 1958.",
+        // Add more sentences as needed
+    ];
+
+    // Variable to track the visibility state
+    var isVisible = false;
+
+    function toggleRectangle() {
+        // Get the container element
+        var container = document.getElementById("hiddenRectangle");
+
+        // Toggle the visibility
+        isVisible = !isVisible;
+
+        if (isVisible) {
+            // Show the rectangle and display a random sentence
+            container.style.display = "block";
+            showRandomSentence();
+        } else {
+            // Hide the rectangle
+            container.style.display = "none";
+        }
+    }
+
+    function showRandomSentence() {
+        // Get a random index
+        var randomIndex = Math.floor(Math.random() * sentences.length);
+
+        // Get the container element
+        var container = document.getElementById("sentenceContainer");
+
+        // Set the inner HTML to the randomly selected sentence
+        container.innerHTML = sentences[randomIndex];
+    }
+</script>
+
+
+</body>
+</html>

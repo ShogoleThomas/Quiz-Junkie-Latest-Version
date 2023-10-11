@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz</title>
+  <style>
+     body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #007BFF;
+      color: #333;
+    }
+
+    #quiz {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #d7d7d7;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #timer {
+      text-align: center;
+	  color: #f9f9f9;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .question b {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .question label {
+      display: block;
+      margin-top: 10px;
+      font-size: 16px;
+	  cursor: pointer;
+    }
+
+    .btn {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+	  text-align: center;
+      margin-top: 20px;
+      transition: background-color 0.3s ease-in-out;
+    }
+	
+	.submit-btn {
+      background-color: #FF6200;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+	  text-align: center;
+      margin-top: 20px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .submit-btn:hover {
+      background-color: #FF4500;
+    }
+	.btn:hover {
+      background-color: #0056b3;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+
+    #result {
+      display: none;
+	  color: #fff;
+	  text-align: center;
+      background-color: #007BFF;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #score, #percentage, #correct-answers {
+      font-size: 21px;
+      margin-bottom: 10px;	
+      color: #fff;	  
+    }
+    #corrections {
+      display: none;
+      background-color: black;
+      border: 5px solid #ddd;
+	  text-align: left;
+	  align-items: center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+	
+	.ret {
+      background-color: #fff;
+      color: #007BFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+	  text-align: center;
+      margin-top: 20px;
+      transition: background-color 0.3s ease-in-out;
+    }
+	
+	.ret:hover {
+	  color: #fff;
+      background-color: #FF6200;
+    }
+	
+	
+    @media screen and (max-width: 770px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .question {
+        font-size: 16px;
+        padding: 15px;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#info_box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#info_box{
+    display: block; 
+	text-align: left; 
+	background-color: #fff; 
+	padding: 20px; 
+	border-radius: 10px; 
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+	margin: 0 auto; 
+	max-width: 800px;
+}
+
+#info_box .info-title{
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    align-items: left;
+    padding: 0 30px;
+    border-radius: 5px 5px 0 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#info_box .info-list{
+    padding: 15px 30px;
+}
+
+#info_box .info-list .info{
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+#info_box .info-list .info span{
+    font-weight: 600;
+    color: #007bff;
+}
+#info_box .buttons{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 30px;
+    border-top: 1px solid lightgrey;
+}
+
+#info_box  .quit{
+    margin: 0 5px;
+    height: 40px;
+    width: 100px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+}
+
+.restart {
+    text-align: center;
+    background-color: #007BFF;
+    color: #fff;
+	padding:  10px;
+	margin: 0 5px;
+    height: 40px;
+    width: 100px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    }
+
+.quit{
+    text-align: center;
+	 padding:  10px;
+    color: #007bff;
+    background: #fff;
+}
+
+.quit:hover{
+    color: #fff;
+    background: #007bff;
+}
+
+.restart:hover{
+    color: #007bff;
+    background: #fff;
+}
+  </style>
+</head>
+<body>
+   <br>
+   <br>
+   
+   <!-- Info Box -->
+   <section id="Quiz">
+    <div id="info_box">
+        <div class="info-title"><span>Welcome to the Quiz!</span></div>
+        <div class="info-list">
+		    <div class="info">Read the rules and instructions before starting the quiz:</div>
+			<br>
+			<div class="info">1. There are a total of 10 questions in this quiz.</div>
+            <div class="info">2. You have <span>10 minutes</span> to complete the quiz.</div>
+            <div class="info">3. Each correct answer is worth 1 point.</div>
+            <div class="info">4. You can't exit from the Quiz while you're playing.</div>
+            <div class="info">5. You can navigate between questions.</div>
+			<div class="info">6. Clicking Continue will start the Quiz.</div>
+        </div>
+        <div class="buttons">
+            <a class="quit" href="../Home Tech.html" role="button">Exit Quiz</a>
+		    <button class="restart" id="continue-btn" onclick="startQuiz()">Continue</button>
+        </div>
+    </div>
+	</section>
+	
+  <div id="timer" style="display: block;"></div>
+  <div id="quiz">
+    <form id="quiz-form">
+      <!-- Questions are dispayed here -->
+    </form>
+    <div class="button-container">
+      <button class="btn" id="prev-btn" onclick="prevQuestion()" disabled>Prev</button>
+      <button class="btn" id="next-btn" onclick="nextQuestion()">Next</button>
+      <button class="submit-btn" id="submit-btn"  onclick="submitQuiz()">Submit</button>
+    </div>
+  </div>
+  <div id="result">
+    <h2>Quiz Results</h2>
+    <p id="score"></p>
+    <p id="percentage"></p>
+    <p id="correct-answers"></p>
+	<div id="end">
+	<br>
+      <a class="ret" id="rt-btn" href="../Home Tech.html">Levels</a>
+      <a class="ret" id="out-btn" href="../Home Tech.html">Exit</a>
+    </div>
+	<br>
+    <h2>Corrections<br></h2>
+	<br>
+    <div align = "center" id="corrections"></div>
+	<br>
+  </div>
+
+  <script>
+	// Array of questions
+    var questions = [
+		
+	{	
+question: "What is quantum computing?",
+choices: [
+"A type of computing that uses transistors and electrical circuits",
+"A method of computing using classical binary bits",
+"A form of computing that relies on quantum bits or qubits",
+"A technique to improve internet speed and bandwidth"
+],
+correctAnswer: 2
+},
+
+{
+question: "What does the term 'Big Data' refer to in technology?",
+choices: [
+"Large-sized computer hardware components",
+"Enormous files and documents",
+"Huge datasets that require specialized processing techniques",
+"A new data storage technology for enterprise-level applications"
+],
+correctAnswer: 2
+},
+
+{
+question: "Which encryption method is currently considered the most secure for data protection?",
+choices: [
+"RSA (Rivest-Shamir-Adleman)",
+"DES (Data Encryption Standard)",
+"AES (Advanced Encryption Standard)",
+"SHA (Secure Hash Algorithm)"
+],
+correctAnswer: 2
+},
+
+{
+question: "What is the purpose of a quantum key distribution (QKD) system?",
+choices: [
+"To improve the speed of traditional computing systems",
+"To distribute encryption keys securely using quantum communication principles",
+"To create random numbers for cryptographic purposes",
+"To prevent malware attacks on quantum computers"
+],
+correctAnswer: 1
+},
+
+{
+question: "What is the fundamental principle behind blockchain technology?",
+choices: [
+"Centralized control of data and transactions",
+"Decentralization and distributed ledger",
+"Real-time data processing",
+"Quantum encryption"
+],
+correctAnswer: 1
+},
+
+{
+question: "Which technology enables self-driving cars to perceive their environment?",
+choices: [
+"Artificial Intelligence (AI)",
+"LiDAR (Light Detection and Ranging)",
+"IoT (Internet of Things) sensors",
+"Neural networks"
+],
+correctAnswer: 1
+},
+
+{
+question: "What is the primary purpose of a Hadoop cluster in big data processing?",
+choices: [
+"To provide high-speed internet connectivity",
+"To store large datasets on multiple hard drives",
+"To distribute data processing tasks across multiple nodes",
+"To optimize code for parallel processing"
+],
+correctAnswer: 2
+},
+
+{
+question: "Which programming language is commonly used for developing artificial intelligence and machine learning applications?",
+choices: [
+"Java",
+"Python",
+"C++",
+"Ruby"
+],
+correctAnswer: 1
+},
+
+{
+question: "What is the primary advantage of edge computing in the context of IoT (Internet of Things)?",
+choices: [
+"Faster data processing and reduced latency",
+"Lower hardware costs",
+"Higher internet speeds",
+"Increased data storage capacity"
+],
+correctAnswer: 0
+},
+
+{
+question: "Which concept is the basis for virtual reality (VR) technology?",
+choices: [
+"Rendering high-definition images",
+"Displaying holographic images",
+"Creating a simulated, immersive environment",
+"Enabling real-time communication"
+],
+correctAnswer: 2
+},
+
+{
+question: "What is Moore's Law, and how does it relate to technology?",
+choices: [
+"It states that the number of transistors in a dense integrated circuit doubles approximately every two years.",
+"It describes the exponential growth of data storage capacity in hard drives.",
+"It explains the relationship between software and hardware in computing.",
+"It predicts the rise of quantum computing as the dominant technology."
+],
+correctAnswer: 0
+},
+
+{
+question: "Which technology is at the core of biometric authentication systems that use unique physical features for identification?",
+choices: [
+"Artificial Intelligence (AI)",
+"Facial recognition",
+"Fingerprint scanning",
+"Voice recognition"
+],
+correctAnswer: 2
+},
+
+{
+question: "What is the purpose of a Content Delivery Network (CDN)?",
+choices: [
+"To manage and optimize internet connectivity",
+"To store and manage website content on the cloud",
+"To improve the speed and performance of content delivery to users",
+"To protect against DDoS (Distributed Denial of Service) attacks"
+],
+correctAnswer: 2
+},
+
+{
+question: "What is the primary benefit of using containerization technology, such as Docker, in software development?",
+choices: [
+"It enables faster download speeds for software packages",
+"It simplifies the deployment and management of applications across different environments",
+"It improves the security of web applications",
+"It eliminates the need for server virtualization"
+],
+correctAnswer: 1
+},
+
+{
+question: "Which technology is used to analyze and interpret large amounts of unstructured data, such as text and speech?",
+choices: [
+"Natural Language Processing (NLP)",
+"Deep learning",
+"Data mining",
+"Virtual reality"
+],
+correctAnswer: 0
+},
+
+{
+question: "What is the purpose of a 3D printer in additive manufacturing?",
+choices: [
+"To create virtual prototypes for testing",
+"To scan and replicate existing objects",
+"To manufacture objects layer by layer using materials like plastic or metal",
+"To produce holographic images"
+],
+correctAnswer: 2
+},
+
+{
+question: "Which technology is used to enhance the security of online transactions by providing an additional layer of authentication?",
+choices: [
+"Two-factor authentication (2FA)",
+"Biometric authentication",
+"Single sign-on (SSO)",
+"Virtual private network (VPN)"
+],
+correctAnswer: 0
+},
+
+{
+question: "What is the purpose of a Neural Processing Unit (NPU) in artificial intelligence systems?",
+choices: [
+"To perform mathematical calculations for machine learning algorithms",
+"To optimize data storage in neural networks",
+"To enable real-time communication between devices",
+"To accelerate and optimize neural network operations"
+],
+correctAnswer: 3
+},
+
+{
+question: "Which technology is used in smart homes to enable devices and appliances to communicate and interact with each other?",
+choices: [
+"NFC (Near Field Communication)",
+"Bluetooth",
+"Zigbee",
+"Infrared"
+],
+correctAnswer: 2
+},
+
+{
+question: "What does the term 'Dark Web' refer to in the context of the internet?",
+choices: [
+"A hidden section of the internet that requires special software to access",
+"Websites with dark-themed designs",
+"Websites that are inaccessible due to network errors",
+"A secret government network"
+],
+correctAnswer: 0
+},
+
+{
+question: "Which technology enables high-speed data transmission over long distances using light signals?",
+choices: [
+"Fiber optics",
+"Satellite communication",
+"Ethernet cables",
+"Wi-Fi"
+],
+correctAnswer: 0
+},
+
+{
+question: "What is the purpose of a deep neural network in machine learning?",
+choices: [
+"To process and analyze unstructured data",
+"To handle natural language processing tasks",
+"To recognize patterns and perform complex tasks with high accuracy",
+"To manage data storage and retrieval"
+],
+correctAnswer: 2
+},
+
+{
+question: "What is the primary function of a smartwatch?",
+choices: [
+"To make phone calls and send messages",
+"To track fitness and health metrics",
+"To play video games",
+"To browse the internet"
+],
+correctAnswer: 1
+},
+
+{
+question: "Which technology is used to capture and store energy from sunlight to generate electricity?",
+choices: [
+"Wind power",
+"Solar power",
+"Hydroelectric power",
+"Nuclear power"
+],
+correctAnswer: 1
+},
+
+{
+question: "What is the purpose of a virtual private network (VPN)?",
+choices: [
+"To protect against malware and viruses",
+"To increase internet speed",
+"To create a secure and encrypted connection over a public network",
+"To enhance graphics rendering for gaming"
+],
+correctAnswer: 2
+},
+
+{
+question: "Which technology is used in facial recognition systems to identify unique facial features?",
+choices: [
+"Artificial Intelligence (AI)",
+"LiDAR (Light Detection and Ranging)",
+"Biometric scanning",
+"Neural networks"
+],
+correctAnswer: 2
+},
+
+{
+question: "What does the term 'Internet of Things' (IoT) refer to?",
+choices: [
+"The global network of interconnected data centers",
+"A network of interconnected computer networks",
+"The concept of interconnecting physical devices and objects to the internet",
+"A new form of internet access that provides ultra-fast speeds"
+],
+correctAnswer: 2
+},
+
+{
+question: "Which technology enables self-driving cars to perceive their environment?",
+choices: [
+"Artificial Intelligence (AI)",
+"LiDAR (Light Detection and Ranging)",
+"IoT (Internet of Things) sensors",
+"Neural networks"
+],
+correctAnswer: 1
+},
+
+{
+question: "What is the primary purpose of a Hadoop cluster in big data processing?",
+choices: [
+"To provide high-speed internet connectivity",
+"To store large datasets on multiple hard drives",
+"To distribute data processing tasks across multiple nodes",
+"To optimize code for parallel processing"
+],
+correctAnswer: 2
+},
+
+{
+question: "Which programming language is commonly used for developing artificial intelligence and machine learning applications?",
+choices: [
+"Java",
+"Python",
+"C++",
+"Ruby"
+],
+correctAnswer: 1
+},
+
+{
+question: "What is the primary advantage of edge computing in the context of IoT (Internet of Things)?",
+choices: [
+"Faster data processing and reduced latency",
+"Lower hardware costs",
+"Higher internet speeds",
+"Increased data storage capacity"
+],
+correctAnswer: 0
+},
+
+{
+question: "Which concept is the basis for virtual reality (VR) technology?",
+choices: [
+"Rendering high-definition images",
+"Displaying holographic images",
+"Creating a simulated, immersive environment",
+"Enabling real-time communication"
+],
+correctAnswer: 2
+},
+
+{
+question: "What is Moore's Law, and how does it relate to technology?",
+choices: [
+"It states that the number of transistors in a dense integrated circuit doubles approximately every two years.",
+"It describes the exponential growth of data storage capacity in hard drives.",
+"It explains the relationship between software and hardware in computing.",
+"It predicts the rise of quantum computing as the dominant technology."
+],
+correctAnswer: 0
+},
+
+{
+question: "Which technology is at the core of biometric authentication systems that use unique physical features for identification?",
+choices: [
+"Artificial Intelligence (AI)",
+"Facial recognition",
+"Fingerprint scanning",
+"Voice recognition"
+],
+correctAnswer: 2
+},
+
+{
+question: "What is the purpose of a Content Delivery Network (CDN)?",
+choices: [
+"To manage and optimize internet connectivity",
+"To store and manage website content on the cloud",
+"To improve the speed and performance of content delivery to users",
+"To protect against DDoS (Distributed Denial of Service) attacks"
+],
+correctAnswer: 2
+},
+
+{
+question: "What is the primary benefit of using containerization technology, such as Docker, in software development?",
+choices: [
+"It enables faster download speeds for software packages",
+"It simplifies the deployment and management of applications across different environments",
+"It improves the security of web applications",
+"It eliminates the need for server virtualization"
+],
+correctAnswer: 1
+},
+
+{
+question: "Which technology is used to analyze and interpret large amounts of unstructured data, such as text and speech?",
+choices: [
+"Natural Language Processing (NLP)",
+"Deep learning",
+"Data mining",
+"Virtual reality"
+],
+correctAnswer: 0
+},
+
+{
+question: "What is the purpose of a 3D printer in additive manufacturing?",
+choices: [
+"To create virtual prototypes for testing",
+"To scan and replicate existing objects",
+"To manufacture objects layer by layer using materials like plastic or metal",
+"To produce holographic images"
+],
+correctAnswer: 2
+},
+
+{
+question: "Which technology is used to enhance the security of online transactions by providing an additional layer of authentication?",
+choices: [
+"Two-factor authentication (2FA)",
+"Biometric authentication",
+"Single sign-on (SSO)",
+"Virtual private network (VPN)"
+],
+correctAnswer: 0
+},
+
+{
+question: "What is the purpose of a Neural Processing Unit (NPU) in artificial intelligence systems?",
+choices: [
+"To perform mathematical calculations for machine learning algorithms",
+"To optimize data storage in neural networks",
+"To enable real-time communication between devices",
+"To accelerate and optimize neural network operations"
+],
+correctAnswer: 3
+},
+
+{
+question: "Which technology is used in smart homes to enable devices and appliances to communicate and interact with each other?",
+choices: [
+"NFC (Near Field Communication)",
+"Bluetooth",
+"Zigbee",
+"Infrared"
+],
+correctAnswer: 2
+},
+
+{
+question: "What does the term 'Dark Web' refer to in the context of the internet?",
+choices: [
+"A hidden section of the internet that requires special software to access",
+"Websites with dark-themed designs",
+"Websites that are inaccessible due to network errors",
+"A secret government network"
+],
+correctAnswer: 0
+},
+
+{
+question: "Which technology enables high-speed data transmission over long distances using light signals?",
+choices: [
+"Fiber optics",
+"Satellite communication",
+"Ethernet cables",
+"Wi-Fi"
+],
+correctAnswer: 0
+},
+
+{
+question: "What is the purpose of a deep neural network in machine learning?",
+choices: [
+"To process and analyze unstructured data",
+"To handle natural language processing tasks",
+"To recognize patterns and perform complex tasks with high accuracy",
+"To manage data storage and retrieval"
+],
+correctAnswer: 2
+},
+
+{
+question: "What is the primary function of a smartwatch?",
+choices: [
+"To make phone calls and send messages",
+"To track fitness and health metrics",
+"To play video games",
+"To browse the internet"
+],
+correctAnswer: 1
+},
+
+{
+question: "Which technology is used to capture and store energy from sunlight to generate electricity?",
+choices: [
+"Wind power",
+"Solar power",
+"Hydroelectric power",
+"Nuclear power"
+],
+correctAnswer: 1
+},
+
+{
+question: "What is the purpose of a virtual private network (VPN)?",
+choices: [
+"To protect against malware and viruses",
+"To increase internet speed",
+"To create a secure and encrypted connection over a public network",
+"To enhance graphics rendering for gaming"
+],
+correctAnswer: 2
+},
+
+{
+question: "Which technology is used in facial recognition systems to identify unique facial features?",
+choices: [
+"Artificial Intelligence (AI)",
+"LiDAR (Light Detection and Ranging)",
+"Biometric scanning",
+"Neural networks"
+],
+correctAnswer: 2
+},
+
+{
+question: "What does the term 'Internet of Things' (IoT) refer to?",
+choices: [
+"The global network of interconnected data centers",
+"A network of interconnected computer networks",
+"The concept of interconnecting physical devices and objects to the internet",
+"A new form of internet access that provides ultra-fast speeds"
+],
+correctAnswer: 2
+},
+
+{
+question: "Which technology is used to analyze and interpret large amounts of unstructured data, such as text and speech?",
+choices: [
+"Natural Language Processing (NLP)",
+"Deep learning",
+"Data mining",
+"Virtual reality"
+],
+correctAnswer: 0
+}];
+
+    // Rest of your JavaScript code...
+	var currentQuestionIndex = 0;
+    var totalQuestions = 0;
+    var correctAnswers = 0;
+    var intervalId;
+
+    // Function to generate the quiz
+    function generateQuiz() {
+      var quizForm = document.getElementById("quiz-form");
+
+      totalQuestions = 10; // Set the number of questions
+
+      // Shuffle the questions array
+      var shuffledQuestions = shuffleArray(questions);
+      var selectedQuestions = shuffledQuestions.slice(0, totalQuestions);
+
+      // Generate HTML for each question
+      selectedQuestions.forEach(function (question, index) {
+        var questionHtml = "";
+        if (index === 0) {
+          questionHtml += '<div class="question" id="question-' + index + '">';
+        } else {
+          questionHtml += '<div class="question" id="question-' + index + '" style="display: none;">';
+        }
+        var indentation = "&emsp;";
+        questionHtml += "<b>Question " + (index + 1) + "</b> [ 1 Point ]<br>" +
+          indentation + question.question + "<br><br>";
+
+        // Generate HTML for choices
+        question.choices.forEach(function (choice, choiceIndex) {
+          questionHtml += indentation + '<label>' +
+            '<input type="radio" name="question-' + index + '" value="' + choiceIndex + '">' +
+            choice +
+            '</label><br>';
+
+          if (choiceIndex === question.choices.length - 1) {
+            questionHtml += '<br>'; // Add a line break after the last choice
+          }
+        });
+
+        questionHtml += '</div>';
+
+        quizForm.innerHTML += questionHtml;
+      });
+    }
+
+    // Function to shuffle an array
+    function shuffleArray(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+
+      // While there remain elements to shuffle
+      while (currentIndex !== 0) {
+       
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // Swap with current element
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
+    }
+
+    // Function to submit the quiz
+    function submitQuiz() {
+      var answers = document.querySelectorAll("input[type=radio]:checked");
+      var numAnswers = answers.length;
+
+      if (numAnswers === totalQuestions) {
+        var score = 0;
+        var correctAnswerText = "Correct Answers: ";
+        var correctionsHtml = "";
+        for (var i = 0; i < numAnswers; i++) {
+          var answer = parseInt(answers[i].value);
+          var questionIndex = parseInt(answers[i].name.split("-")[1]);
+          var question = questions[questionIndex];
+
+          if (answer === question.correctAnswer) {
+            score++;
+            correctAnswerText += (i + 1) + " ";
+          } else {
+            correctionsHtml += "<p>Question " + (i + 1) + ": " +
+              question.question + "<br>" +
+              "Your answer: " + question.choices[answer] + "<br>" +
+              "Correct answer: " + question.choices[question.correctAnswer] + "</p>" + "<br>";
+          }
+        }
+
+        var percentage = ((score / totalQuestions) * 100).toFixed(2);
+
+        document.getElementById("score").textContent = "Score: " + score + "/" + totalQuestions;
+        document.getElementById("percentage").textContent = "Percentage: " + percentage + "%";
+        document.getElementById("correct-answers").textContent = correctAnswerText;
+
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("result").style.display = "block";
+
+        // Display corrections
+        var correctionsContainer = document.getElementById("corrections");
+        correctionsContainer.innerHTML = correctionsHtml;
+        correctionsContainer.style.display = "block";
+
+        // Hide the timer
+        document.getElementById("timer").style.display = "none";
+
+        clearInterval(intervalId);
+      } else {
+        // Display an error message or take appropriate action
+        alert("Please answer all required questions before submitting.");
+      }
+    }
+
+    // Function to show next question
+    function nextQuestion() {
+	if(currentQuestionIndex < (totalQuestions-1))
+	{
+      var currentQuestion = document.getElementById("question-" + currentQuestionIndex);
+      currentQuestion.style.display = "none";
+
+      currentQuestionIndex++;
+	  var nextQuestion = document.getElementById("question-" + currentQuestionIndex);
+        nextQuestion.style.display = "block";
+      if (currentQuestionIndex >= (totalQuestions-1)) {
+        document.getElementById("submit-btn").disabled = false;
+        document.getElementById("next-btn").disabled = true;
+      }
+	  if (currentQuestionIndex >= 1) {
+        document.getElementById("prev-btn").disabled = false;
+      }
+	  }
+    }
+
+    // Timer function
+    function startTimer(duration, display) {
+      var timer = duration, minutes, seconds;
+      intervalId = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = "Time Remaining: " + minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          clearInterval(intervalId);
+          submitQuiz1();
+        }
+      }, 1000);
+    }
+    
+    // Function to show previous question
+    function prevQuestion() {
+      if (currentQuestionIndex > 0) {
+        var currentQuestion = document.getElementById("question-" + currentQuestionIndex);
+        currentQuestion.style.display = "none";
+
+        currentQuestionIndex--;
+
+        var prevQuestion = document.getElementById("question-" + currentQuestionIndex);
+        prevQuestion.style.display = "block";
+		
+		if (currentQuestionIndex < (totalQuestions-1)) {
+        document.getElementById("submit-btn").disabled = false;
+        document.getElementById("next-btn").disabled = false;
+      }
+	  
+	  if (currentQuestionIndex < 1) {
+        document.getElementById("prev-btn").disabled = true;
+      }
+      }
+    }
+	
+	window.onload = function () 
+	{
+  document.getElementById("quiz").style.display = "none";
+  // Show the rules box initially
+  document.getElementById("info_box").style.display = "block";
+  // Disable the "Next" button until the quiz starts
+  document.getElementById("button-container").style.display = "none";
+};
+
+function startQuiz() 
+{
+  document.getElementById("info_box").style.display = "none";
+  generateQuiz();
+  
+
+      var timerDuration = 600; 
+
+      var timerDisplay = document.getElementById("timer");
+      startTimer(timerDuration, timerDisplay);
+  document.getElementById("quiz").style.display = "block";
+  document.getElementById("button-container").style.display = "block";    
+}
+
+// Function to submit the quiz if timerout
+    function submitQuiz1() {
+      var quizForm = document.getElementById("quiz-form");
+      var quizElements = quizForm.elements;
+
+      var correctionsHtml = "";
+
+      for (var i = 0; i < totalQuestions; i++) {
+        var selectedAnswer = parseInt(quizElements["question-" + i].value);
+        var question = questions[i];
+
+        if (selectedAnswer === question.correctAnswer) {
+          correctAnswers++;
+        } else {
+          // Generate HTML for correction
+          correctionsHtml += "<p>Question " + (i + 1) + ": "+ question.question + " <br>";
+          correctionsHtml += "Your Answer: " + question.choices[selectedAnswer] + "<br>";
+          correctionsHtml += "Correct Answer: " + question.choices[question.correctAnswer] + "</p>";
+		  correctionsHtml += " <br>";
+        }
+      }
+
+      var score = "Score: " + correctAnswers + "/" + totalQuestions;
+      var percentage = "Percentage: " + ((correctAnswers / totalQuestions) * 100).toFixed(2) + "%";
+      var correctAnswerText = "Correct Answers: " + correctAnswers;
+
+      document.getElementById("score").textContent = score;
+      document.getElementById("percentage").textContent = percentage;
+      document.getElementById("correct-answers").textContent = correctAnswerText;
+
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").style.display = "block";
+
+      // Display corrections
+      var correctionsContainer = document.getElementById("corrections");
+      correctionsContainer.innerHTML = correctionsHtml;
+      correctionsContainer.style.display = "block";
+
+      // Hide the timer
+      document.getElementById("timer").style.display = "none";
+
+      clearInterval(intervalId);
+    }
+  </script>
+
+</body>
+</html>

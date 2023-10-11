@@ -1,0 +1,491 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzes</title>
+    <link rel="stylesheet" href="styleC.css">
+<style>
+*{
+    margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'poppins', sans-serif;
+}
+.container{
+	width: 100%;
+	height: 100vh;
+	background-image: linear-gradient(rgba(0,0,0,0.3), transparent),url(back.jpg);
+	background-size: cover;
+	background-position: center;
+	padding: 0 8%;
+	position: relative;
+}
+nav{
+	display: flex;
+	width: 100%;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 5px 0;
+	
+}
+nav ul{
+	flex: 1;
+	text-align: left;
+	padding-right: 30px;
+	
+}
+nav ul li{
+	display: inline-block;
+	list-style: none;
+	margin: 10px 30px;
+	height: 90vh;
+}
+nav ul li a{
+	color: #fff;
+	text-decoration: none;
+	position: relative;
+}
+nav ul li a::after{
+	content: '';
+	width: 0%;
+	height: 3px;
+	position: absolute;
+	bottom: -5px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #ADD8E6;
+	transition: width 0.3s;
+}
+nav ul li a:hover::after{
+	width: 100%;
+}
+.text-box{
+	color: #fff;
+	position: absolute;
+	bottom: 8%;
+}
+.text-box p{
+	font-size: 50px;
+	font-weight: 600;
+}
+.text-box h1{
+	font-size: 190px;
+	line-height: 160px;
+	margin-left: -10px;
+	color: transparent;
+	-webkit-text-stroke: 1px #fff;
+	background: url(Shirt.jpeg);
+	-webkit-background-clip: text;
+	background-position: 0 0;
+	animation: back 20s linear infinite;
+}
+@keyframes back{
+	100%{
+		background-position: 2000px 0;
+	}
+}
+.text-box h3{
+	font-size: 40px;
+	font-weight: 500;
+}
+.text-box .row{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 30px;
+}
+.text-box a{
+	color: #fff;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin-right: 20px;
+	border: 2px solid #fff;
+}
+
+// Footer
+#testimonial{
+    width: 100%;
+    padding: 70px 0;
+}
+.testimonial-row{
+    width: 100%;
+    padding: 70px 0;
+}
+.testimonial-row{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.testimonial-col{
+    flex-basis: 28%;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px 3px #00968814;
+    cursor: pointer;
+    transition: transform .5s;
+}
+.testmonial-col p{
+    font-size: 14px;
+}
+.user{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+.user img{
+    width: 40px;
+    margin-right: 20px;
+    border-radius: 3px;
+}
+.user-info .fa{
+    margin-left: 10px;
+    color: #27c0ff;
+    font-size: 20px;
+}
+.user-info small{
+    color: #009688;
+}
+.testimonial-col:hover{
+    transform: translateY(-7px);
+}
+comments-container h2{
+    text-align: center;  
+}
+submit-button{
+     text-align: center;  
+}
+comments-list{
+    text-align: center; 
+}
+    .comment {
+      margin-bottom: 10px;
+      padding: 5px;
+      border: 1px solid #ccc;
+}
+@media screen and (max-width: 770px){
+    .testimonial-col{
+        flex-basis: 100%;
+    }
+}
+
+
+
+
+</style>
+   
+   
+</head>
+<body>
+<section id="Home">
+    
+     <div class="container">
+	    <nav>
+		    
+			<ul>
+			    <li><a href="">Home</a></li>
+				<li><a href="#feature">Features</a></li>
+				<li><a href="#Quiz">Quizzes</a></li>
+				<li><a href="#testimonial">Testimonials</a></li>
+				<li><a href="#footer">About Us</a></li>
+			</ul>
+			
+		</nav>
+		<div class="text-box">
+		    <p>Quiz</p>
+			<h1>Junkie</h1>
+			<h3>Looking for entertaining good quizzes?</h3>
+			
+			<div class="row">
+			<a href="#Quiz">Start Quizzes</a>
+			<a href="#footer">Contact Us</a>
+			<span>Thank you for visiting Quiz junkie, We look forward to <br> making you have the best experience.</span>
+			</div>
+		</div>
+	</div>
+</section>      
+ 
+<!--Features-->
+
+<section id="feature">
+<div class="title-text">
+<p>FEATURES</p>
+<h1>Share Your Experince With Us</h1>
+</div>
+<div class="feature-box">
+    <div class="features">
+	    <h1>Why Choose Us</h1>
+		<div class="features-desc">
+		    <div class="feature-icon"></div>
+			<div class="feature-text">
+			<p>Quiz Junkie offers you great quizzes, with More better experience.
+			Our aim is to make sure you are equiped with knowledge in a more fun way.</p>
+			</div>
+		</div>
+		
+		<h1>Find all Your Quizzes Here</h1>
+		<div class="features-desc">
+		    <div class="feature-icon"></div>
+			<div class="feature-text">
+			<p>We offer our Quizzes in four categories to choose from, which covers 
+			most aspects of life. We have Technology, Health, Sports, Education,
+			find your favourite Quiz and enjoy the experience.</p>
+			</div>
+		</div>
+		
+		<h1>How To Get In Touch With Us.</h1>
+		<div class="features-desc">
+		    <div class="feature-icon"></div>
+			<div class="feature-text">
+			<p>You can find all our information on this link <a href="#footer">Click Me</a>
+			if you want to get in touch us.</p>
+			</div>
+		</div>
+     </div>  
+	
+	 
+	 <div class="features-img">
+	    <img src="Education.jpg">
+	 </div>
+		
+        
+ </div>
+</section>
+
+<!--Quizzes-->
+<section id="Quiz">
+    <div class="title-text">
+    <p>Quiz</p>
+    <h1>Quiz Categories</h1>
+    </div>
+    <div class="container">
+      <div class="card">
+        <div class="img">
+          <img src="Bus.jpg">
+        </div>
+        <div class="top-text">
+          <div class="name">Technology</div>
+          <p>Quiz</p>
+        </div>
+        <div class="bottom-text">
+          <div class="text">Ready to put your tech prowess to the test? Take our technology quizzes and dive into the fascinating world of gadgets, coding, and innovation.</div>
+          <div class="btn">
+            <a href="Home Pages/Home Tech.html">View more</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img">
+           <img src="Gym.jpg">
+        </div>
+        <div class="top-text">
+          <div class="name">Health</div>
+          <p>Quiz</p>
+        </div>
+        <div class="bottom-text">
+          <div class="text">Explore your wellness knowledge with our health quizzes. Test your understanding of nutrition, fitness, and well-being to make informed choices for a healthier lifestyle.</div>
+          <div class="btn">
+            <a href="Home Pages/Home Health.html">View more</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="img">
+           <img src="Albert.jpg">
+        </div>
+        <div class="top-text">
+          <div class="name">Education</div>
+          <p>Quiz</p>
+        </div>
+        <div class="bottom-text">
+          <div class="text">Sharpen your mind with our education quizzes! Challenge your knowledge on a variety of subjects, from science to history, and discover new insights to fuel your quest for lifelong learning.</div>
+          <div class="btn">
+            <a href="Home Pages/Home Education.html">View more</a>
+          </div>
+        </div>
+      </div>
+	  
+	  <div class="card">
+        <div class="img">
+           <img src="Messi.jpg">
+        </div>
+        <div class="top-text">
+          <div class="name">Sports</div>
+          <p>Quiz</p>
+        </div>
+        <div class="bottom-text">
+          <div class="text">Get in the game with our sports quizzes! Test your sports knowledge, from the world's most popular games to lesser-known gems. Score big and challenge your friends to see who's the ultimate sports aficionado.</div>
+          <div class="btn">
+            <a href="Home Pages/Home Sports.html">View more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!--Testimonial-->
+
+<section id="testimonial">
+    <div class="title-text">
+    <p>TESTIMONIAL</p>
+    <h1>Comments and Reviews</h1>
+    </div>
+	
+    <div class="testimonial-row">
+        <div class="testimonial-col">
+            <div class="user">
+                <img src="Dumisa.jpeg">
+                <div class="user-info">
+                    <h4>Dumisa Moyo<i class="fa fa-twitter"></i></h4>
+                    <small>@Dumisa</small>
+                </div>
+            </div>
+            <p>This website is working great but i feel like there are some features missing 
+            to make even more better. But the overall experience was not bad especially 
+            considering that it was built not so long ago</p>
+        </div>
+        <div class="testimonial-col">
+            <div class="user">
+                <img src="Karabo.jpeg">
+                <div class="user-info">
+                    <h4>Karabo Mojapelo<i class="fa fa-twitter"></i></h4>
+                    <small>@Karabo</small>
+                </div>
+            </div>
+             <p>I've visisted this site for like 3 days now, and i got to say it is absolutely the best.
+             Plus it has some categories of where you can actually get to choose your best of 
+             interest, and it is more user friendly.</p>
+        </div>
+        <div class="testimonial-col">
+            <div class="user">
+                <img src="images/Thomas.jpg">
+                <div class="user-info">
+                    <h4>Thomas Shogole<i class="fa fa-twitter"></i></h4>
+                    <small>@Thomas</small>
+                </div>
+            </div>
+             <p>Let's be honest here, the website is all great and i love the fact that you get to choose
+            the quiz category, i had the best experience answering the quizzes from this web, and the
+            the questions are more easy and educational too. I learned so much from the quiz and
+           want to learn more. </p>
+        </div>
+    </div>
+<center>
+   <h1>Comments</h1>
+
+  <div class="comments">
+        <h1>Let us know what's on your mind.</h1>
+		<hr>
+        <div id="comments-container"></div>
+        <form id="comment-form">
+            <textarea type="text" id="comment-input" placeholder="Add a comment" onfocus="showNameInput()"  rows="4" cols="100"></textarea><br>
+            <input type="text" id="name-input" placeholder="Your Name" style="display: none;">
+            <button type="button" onclick="addComment()">Submit</button>
+            <button type="button" onclick="clearData()">Remove Comment</button>
+        </form>
+    </div>
+    <script>
+        function showNameInput() {
+            const nameInput = document.getElementById('name-input');
+            nameInput.style.display = 'block';
+        }
+
+        function addComment() {
+            const nameInput = document.getElementById('name-input');
+            const commentInput = document.getElementById('comment-input');
+            const name = nameInput.value;
+            const commentText = commentInput.value;
+
+            if (name.trim() !== '' && commentText.trim() !== '') {
+                const commentsContainer = document.getElementById('comments-container');
+                const commentDiv = document.createElement('div');
+                commentDiv.innerHTML = `<strong>${name}:</strong> ${commentText}`;
+                commentsContainer.appendChild(commentDiv);
+
+                nameInput.value = '';
+                commentInput.value = '';
+                nameInput.style.display = 'none'; // Hide the name input field
+
+                // Save the comment to Local Storage
+                saveComment(name, commentText);
+            }
+        }
+
+        function saveComment(name, comment) {
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.push({ name, comment });
+            localStorage.setItem('comments', JSON.stringify(comments));
+        }
+
+        // Load comments from Local Storage when the page loads
+        window.addEventListener('load', () => {
+            const commentsContainer = document.getElementById('comments-container');
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.forEach(entry => {
+                const commentDiv = document.createElement('div');
+                commentDiv.innerHTML = `<strong>${entry.name}:</strong> ${entry.comment}`;
+                commentsContainer.appendChild(commentDiv);
+            });
+        });
+
+        // Clear data from Local Storage
+        function clearData() {
+            localStorage.removeItem('comments');
+            const commentsContainer = document.getElementById('comments-container');
+            commentsContainer.innerHTML = ''; // Clear comments from the UI
+        }
+    </script>
+</center>
+</section>
+
+<!--footer-->
+<section id="footer">
+    <div class="title-text">
+    <p>ABOUT US</p>
+    <h1>Visit US</h1>
+    </div>
+<div class="footer-row">
+<div class="footer-left">
+
+    <h1>For You</h1>
+	<p><a href="" style="color: white;">Home</a></p>
+    <p><a href="#Quiz" style="color: white;">Quiz Category</a</p>
+    <p><a href="#testimonial" style="color: white;">Testimonials</a></p>
+	<p><a href="www.google.com" style="color: white;">Search the Web</a></p>
+</div>
+
+<div class="footer-center">
+    <h1>Legal Information</h1>
+	<p><a href="Legal/Disclaimer.html" style="color: white;">Disclaimer</a></p>
+    <p><a href="Legal/Privacy Policy.html" style="color: white;">Privacy Policy</a></p>
+    <p><a href="Legal/Terms of Use.html" style="color: white;">Terms of Service</a></p>
+    
+</div>
+
+<div class="footer-right">
+    <h1>Find us</h1>
+    <p>Soshanguve South<br> Margret Street Block L</p>
+    <p>Email: quizjunkie.ac.za</p>
+    <p>Contact: +27 659652584</p>
+</div>
+
+</div>
+<div class="footer-icons">
+<center>
+<a href="https://twitter.com/"><img src ="images/twitter.png" ></a>  <a href="https://wa.me/"><img src ="images/whatsapp.png" title="WatsApp: +27 659652584"></a>  <a href="https://www.facebook.com/"><img src ="images/50.png" ></a>
+</center>
+</div>
+<div class="footer-white">
+<hr>
+<p><marquee width="60%">
+Our website is designed to entertain and educate. &copy [2023] Quiz Junkie. All rights reserved, No part of this website 
+may be reproduced, distributed, or transmitted in any form or by means without the prior written permission of the website owners.
+</marquee></p>
+<hr>
+<div>
+</section>
+</body>
+</html>

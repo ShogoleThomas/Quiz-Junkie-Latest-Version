@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+    #quiz {
+      margin-bottom: 20px;
+    }
+    #result {
+      display: none;
+    }
+    .question {
+      margin-bottom: 10px;
+    }
+    .submit-btn {
+      display: block;
+      margin-top: 20px;
+    }
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+    .button-container {
+      margin: 10px;
+    }
+    #timer {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    @media screen and (max-width: 770px) {
+      h1 {
+        font-size: 44px;
+      }
+      .question {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+<body bgcolor="#efefefefefefefefefefefef">
+
+  <h1>Journey into the World of Learning and Put Your Knowledge to the Test</h1>
+  <p><i><center>Discover the thrill of learning as you explore new concepts, challenge your limits, and grow.</center></i></p>
+
+  <hr width="350">
+  <h2><i>Start Quiz</i></h2>
+  <div id="timer" style="display: block;"></div>
+  <div id="quiz">
+    <form id="quiz-form">
+      <!-- Questions will be dynamically generated here -->
+    </form>
+    <div class="button-container center">
+      <button id="back-btn" class="submit-btn" onclick="previousQuestion()" disabled>Back</button>
+      <button id="next-btn" class="submit-btn" onclick="nextQuestion()" disabled>Next</button>
+    </div>
+    <button id="submit-btn" class="submit-btn" onclick="submitQuiz()" disabled>Submit</button>
+  </div>
+  <div id="result" style="display: none;">
+    <h2>Quiz Results</h2>
+    <p id="score"></p>
+    <p id="percentage"></p>
+    <p id="correct-answers"></p>
+    <h2>Memo<br></h2>
+    <div id="corrections" style="display: none;"></div>
+  </div>
+
+  <script>
+    // Array of questions
+    var questions = [
+      {
+        question: "What is the capital of France?",
+        choices: ["Paris", "London", "Rome", "Berlin"],
+        correctAnswer: 0
+      },
+      {
+        question: "Who wrote the play 'Hamlet'?",
+        choices: ["William Shakespeare", "George Orwell", "Ernest Hemingway", "Jane Austen"],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the formula for calculating the area of a circle?",
+        choices: ["πr", "2πr", "πr^2", "2πr^2"],
+        correctAnswer: 2
+      },
+      {
+        question: "Who is credited with discovering electricity?",
+        choices: ["Isaac Newton", "Albert Einstein", "Thomas Edison", "Benjamin Franklin"],
+        correctAnswer: 3
+      },
+      {
+        question: "What is the largest planet in our solar system?",
+        choices: ["Mars", "Saturn", "Jupiter", "Venus"],
+        correctAnswer: 2
+      },
+      // Add more questions here...
+    ];
+
+    var totalQuestions = 10;
+    var currentQuestionIndex = 0;
+    var correctAnswers = 0;
+    var intervalId;
+
+    // Function to generate the quiz
+    function generateQuiz() {
+      var quizForm = document.getElementById("quiz-form");
+
+      // Shuffle the questions array
+      var shuffledQuestions = shuffleArray(questions);
+      var selectedQuestions = shuffledQuestions.slice(0, totalQuestions);
+
+      // Generate HTML for each question
+      selectedQuestions.forEach(function (question, index) {
+        var questionHtml = "";
+        if (index === 0) {
+          questionHtml += '<div class="question" id="question-' + index + '">';
+        } else {
+          questionHtml += '<div class="question" id="question-' + index + '" style="display: none;">';
+        }
+        var indentation = "&emsp;";
+        questionHtml += "<b>Question " + (index + 1) + "</b> [ 1 Point ]<br>" +
+          indentation + question.question + "<br><br>";
+
+        // Generate HTML for choices
+        question.choices.forEach(function (choice, choiceIndex) {
+          questionHtml += indentation + '<label>' +
+            '<input type="radio" name="question-' + index + '" value="' + choiceIndex + '">' +
+            choice +
+            '</label><br>';
+
+          if (choiceIndex === question.choices.length - 1) {
+            questionHtml += '<br>';
+          }
+        });
+
+        questionHtml += '</div>';
+
+        quizForm.innerHTML += questionHtml;
+      });
+    }
+
+    // Function to shuffle an array
+    function shuffleArray(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
+    }
+
+    // Function to show next question
+    function nextQuestion() {
+      var currentQuestion = document.getElementById("question-" + currentQuestionIndex);
+      currentQuestion.style.display = "none";
+
+      currentQuestionIndex++;
+      if (currentQuestionIndex >= totalQuestions) {
+        document.getElementById("next-btn").disabled = true;
+        document.getElementById("back-btn").disabled = true;
+        document.getElementById("submit-btn").disabled = false;
+      } else {
+        var nextQuestion = document.getElementById("question-" + currentQuestionIndex);
+        nextQuestion.style.display = "block";
+        document.getElementById("back-btn").disabled = false;
+      }
+    }
+
+    // Function to show previous question
+    function previousQuestion() {
+      var currentQuestion = document.getElementById("question-" + currentQuestionIndex);
+      currentQuestion.style.display = "none";
+
+      currentQuestionIndex--;
+      if (currentQuestionIndex <= 0) {
+        document.getElementById("back-btn").disabled = true;
+      } else {
+        var prevQuestion = document.getElementById("question-" + currentQuestionIndex);
+        prevQuestion.style.display = "block";
+        document.getElementById("next-btn").disabled = false;
+        document.getElementById("submit-btn").disabled = true;
+      }
+    }
+
+    // Function to submit the quiz
+    function submitQuiz() {
+      var answers = document.querySelectorAll("input[type=radio]:checked");
+      var numAnswers = answers.length;
+
+      if (numAnswers === totalQuestions) {
+        var score = 0;
+        var correctAnswerText = "Correct Answers: ";
+        var correctionsHtml = "";
+        for (var i = 0; i < numAnswers; i++) {
+          var answer = parseInt(answers[i].value);
+          var questionIndex = parseInt(answers[i].name.split("-")[1]);
+          var question = questions[questionIndex];
+
+          if (answer === question.correctAnswer) {
+            score++;
+            correctAnswerText += (i + 1) + " ";
+          } else {
+            correctionsHtml += "<p>Question " + (i + 1) + ": " +
+              question.question + "<br>" +
+              "Your answer: " + question.choices[answer] + "<br>" +
+              "Correct answer: " + question.choices[question.correctAnswer] + "</p>";
+          }
+        }
+
+        var percentage = ((score / totalQuestions) * 100).toFixed(2);
+
+        document.getElementById("score").textContent = "Score: " + score + "/" + totalQuestions;
+        document.getElementById("percentage").textContent = "Percentage: " + percentage + "%";
+        document.getElementById("correct-answers").textContent = correctAnswerText;
+
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("result").style.display = "block";
+
+        var correctionsContainer = document.getElementById("corrections");
+        correctionsContainer.innerHTML = correctionsHtml;
+        correctionsContainer.style.display = "block";
+
+        document.getElementById("timer").style.display = "none";
+
+        clearInterval(intervalId);
+      } else {
+        alert("Please answer all required questions before submitting.");
+      }
+    }
+
+    // Timer function
+    function startTimer(duration, display) {
+      var timer = duration, minutes, seconds;
+      intervalId = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = "Time Left: " + minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          clearInterval(intervalId);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    // Generate the quiz on page load
+    window.onload = function () {
+      generateQuiz();
+
+      var timerDuration = 60 * 5; // 5 minutes
+      var timerDisplay = document.getElementById("timer");
+      startTimer(timerDuration, timerDisplay);
+    };
+  </script>
+
+</body>
+</html>

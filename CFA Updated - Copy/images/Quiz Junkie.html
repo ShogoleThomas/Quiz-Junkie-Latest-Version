@@ -1,0 +1,271 @@
+<html>
+<head>
+    <title>Quizzes</title>
+    <link rel="stylesheet" href="styleC.css">
+   
+</head>
+<body>
+<section id="banner">
+    
+    <div class="banner-text">
+        <h1>Quiz Junkie</h1>
+        <p>Looking for some quizzes to refresh your mind, you've come to the right place</p>
+        <div class="banner-btn">
+          <a href="#Quiz"><span></span>Start Quizzes</a>
+          <a href="#footer"><span></span>Contact Us</a>
+        </div>
+    </div>
+</section>
+
+<div id="sideNav">
+    <nav>
+    <ul>
+            <li><a href="#banner">HOME</a></li>
+            <li><a href="#feature">FEATURES</a></li>
+            <li><a href="#Quiz">QUIZZES</a></li>
+            <li><a href="#testimonial">TESTIMONIALS</a></li>
+            <li><a href="#footer">ABOUT US</a></li>
+    </ul>
+    </nav>
+</div>
+<div id="menuBtn">
+    <img src="images/Menu bar.png" id="menu">
+</div>
+
+<script>
+var menuBtn = document.getElementById("menuBtn")
+var sideNav = document.getElementById("sideNav")
+var menu = document.getElementById("menu")
+
+sideNav.style.right = "-250px";
+
+menuBtn.onclick = function(){
+    if(sideNav.style.right == "-250px"){
+        sideNav.style.right = "0";
+        menu.src = "images/Close icon.png";
+    }
+    else{
+        sideNav.style.right = "-250px";
+        menu.src = "images/Menu bar.png";
+    }
+}
+</script>
+
+<!--Features-->
+
+<section id="feature">
+<div class="title-text">
+<p>FEATURES</p>
+<h1>Be Our Guest</h1>
+</div>
+<div class="feature-box">
+    <div class="features">
+        
+        <h1>Do you want to know more? Don't miss out join us to improve your knowledge</h1>
+		</div>
+		<div class="features-img">
+		<src="images/Education Four.jpg">
+		</div>
+        <div class="features-desc">
+            <div class="feature-icon"></div>
+            <div class="feature-text"></div>
+            <p>We are really glad you could join us, our aim is to improve your knowledge.
+           If loking for the best educational quizzes you've never answered then you are at
+           the right place</p>
+        </div>
+     <h1>Find all your quizzes here</h1>
+        <div class="features-desc">
+            <div class="feature-icon"></div>
+            <div class="feature-text"></div>
+            <p>Our Website is built on four quiz categories, which are: Education, Technology,
+             Sports and health. Choose which one best suits your interests.</p>
+        </div>
+     <h1>Test your knowledge now</h1>
+        <div class="features-desc">
+            <div class="feature-icon"></div>
+            <div class="feature-text"></div>
+            <p>Everone wants to improve their knowledge, that is why we want you to not look
+            anymore further. Answer the quizzes to improve the knowledge that you already have.</p>
+        
+    </div>
+    
+</div>
+</section>
+
+<!--Quizzes-->
+<section id="Quiz">
+    <div class="title-text">
+    <p>Quiz</p>
+    <h1> Choose quiz category and click to start</h1>
+    </div>
+    <div class="Quiz-box">
+        <div class="single-Quiz">
+             <a href="images/Web Technology.html">
+            <img src="images/Bus.jpg">
+            <div class="overlay"></div>
+           </a>
+            <div class="Quiz-desc">
+                <h3> NB: Once you click the link the quiz will start! Click to Start Tech Quiz</h3>
+                <hr>
+                <p>Answer one of your favourite quizzes from our Web.
+                We give better expiriece</p>
+            </div>
+        </div>
+        <div class="single-Quiz">
+             <a href="images/Web Health.html">
+            <img src="images/Gym.jpg">
+            <div class="overlay"></div>
+           </a>
+            <div class="Quiz-desc">
+                <h3> NB: Once you click the link the quiz will start!!<a href="images/Web Health.html" style="color: white;">Click to Start Health Quiz</a></h3>
+                <hr>
+                <p>Answer one of your favourite quizzes from our Web.
+                We give better expiriece</p>
+            </div>
+        </div>
+        <div class="single-Quiz">
+            <a href="images/Web Education.html">
+            <img src="images/Albert.jpg">
+            <div class="overlay"></div>
+            </a>
+            <div class="Quiz-desc">
+                <h3> NB: Once you click the link the quiz will start!!<a href="images/Web Education.html" style="color: white;">Click to Start Education Quiz</a></h3>
+                <hr>
+                <p>Answer one of your favourite quizzes from our Web.
+               We give better expiriece</p>
+            </div>
+        </div>
+        <div class="single-Quiz">
+            <a href="images/Web Sports.html">
+           <img src="images/Messi.jpg">
+            <div class="overlay"></div>
+            </a>
+            <div class="Quiz-desc">
+                <h3> NB: Once you click the link the quiz will start!!<a href="images/Web Sports.html" style="color: white;">Click to Start Sports</a></h3>
+                <hr>
+                <p>Answer one of your favourite quizzes from our Web.
+                We give better experience.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Testimonial-->
+
+<section id="testimonial">
+    <div class="title-text">
+    <p>TESTIMONIAL</p>
+    <h1>Comments and Reviews</h1>
+    </div>
+    <div class="testimonial-row">
+        <div class="testimonial-col">
+            <div class="user">
+                <img src="images/Tech quiz.jfif">
+                <div class="user-info">
+                    <h4>Dumisa Moyo<i class="fa fa-twitter"></i></h4>
+                    <small>@kennorman</small>
+                </div>
+            </div>
+            <p>This website is working great but i feel like there are some features missing 
+            to make even more better. But the overall experience was not bad especially 
+            considering that it was built not so long ago</p>
+        </div>
+        <div class="testimonial-col">
+            <div class="user">
+                <img src="Sports quiz.jfif">
+                <div class="user-info">
+                    <h4>Karabo Mojapelo<i class="fa fa-twitter"></i></h4>
+                    <small>@liarakarian</small>
+                </div>
+            </div>
+             <p>I've visisted this site for like 3 days now, and i got to say it is absolutely the best.
+             Plus it has some categories of where you can actually get to choose your best of 
+             interest, and it is more user friendly.</p>
+        </div>
+        <div class="testimonial-col">
+            <div class="user">
+                <img src="images/Thomas.jpg">
+                <div class="user-info">
+                    <h4>Thomas Shogole<i class="fa fa-twitter"></i></h4>
+                    <small>@rickydanial</small>
+                </div>
+            </div>
+             <p>Let's be honest here, the website is all great and i love the fact that you get to choose
+            the quiz category, i had the best experience answering the quizzes from this web, and the
+            the questions are more easy and educational too. I learned so much from the quiz and
+           want to learn more. </p>
+        </div>
+    </div>
+<center>
+   <h1>Comments</h1>
+
+  <div id="commentContainer">
+    <!-- Existing comments will be displayed here -->
+  </div>
+
+  <form id="commentForm">
+    <textarea id="commentText" placeholder="Type your comment here" rows="4" cols="100"></textarea>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById("commentForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent the form from submitting and refreshing the page
+
+      var commentText = document.getElementById("commentText").value;
+      if (commentText.trim() === "") {
+        return; // Do not add empty comments
+      }
+
+      var comment = document.createElement("div");
+      comment.className = "comment";
+      comment.textContent = commentText;
+
+      document.getElementById("commentContainer").appendChild(comment);
+
+      document.getElementById("commentText").value = ""; // Clear the comment input field
+    });
+  </script>
+</ceneter>
+</section>
+
+<!--footer-->
+
+<section id="footer">
+    <img src="images/Technology.jpg" class="footer-img">
+    <div class="title-text">
+    <p>ABOUT US</p>
+    <h1>Visit US</h1>
+    </div>
+<div class="footer-row">
+<div class="footer-left">
+
+    <h1>For You</h1>
+    <p><a href="#Quiz" style="color: white;">Quiz Category</a</p>
+    <p><a href="#testimonial" style="color: white;">Testimonials</a></p>
+</div>
+<div class="footer-right">
+    <h1>Find us</h1>
+    <p>Soshanguve South, Margret Street Block L</p>
+    <p>Email: quizjunkie.ac.za</p>
+    <p>Contact: +27 659652584</p>
+</div>
+</div>
+<div class="footer-icons">
+<center>
+<a href="https://twitter.com/"><img src ="images/twitter.png" ></a>  <a href="https://wa.me/"><img src ="images/whatsapp.png" title="WatsApp: +27 659652584"></a>  <a href="https://www.facebook.com/"><img src ="images/50.png" ></a>
+</center>
+</div>
+<div class="footer-white">
+<hr>
+<p><marquee width="60%">
+Our website is designed to entertain and educate. &copy [2023] Quiz Junkie. All rights reserved, No part of this website 
+may be reproduced, distributed, or transmitted in any form or by means without the prior written permission of the website owners.
+</marquee></p>
+<hr>
+<div>
+</section>
+
+</body>
+</html>
